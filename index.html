@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Sécurité du domaine vosti.ca</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: "Segoe UI", Roboto, sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+      margin: 0;
+      padding: 2rem;
+      line-height: 1.6;
+    }
+    h1, h2 {
+      color: #005a9c;
+    }
+    code {
+      background-color: #eee;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.95em;
+    }
+    pre {
+      background-color: #eee;
+      padding: 1rem;
+      border-radius: 6px;
+      overflow-x: auto;
+    }
+    .section {
+      margin-bottom: 2rem;
+    }
+    .note {
+      font-style: italic;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🛡️ Sécurité du domaine <code>vosti.ca</code></h1>
+  <p><strong>Dernière mise à jour :</strong> 21 août 2025</p>
+
+  <div class="section">
+    <h2>🇫🇷 Configuration DNS</h2>
+    <p>Le domaine <code>vosti.ca</code> est actuellement <strong>inactif</strong>. Aucun service de messagerie ou d’hébergement web n’est actif. Toutefois, une configuration DNS rigoureuse a été mise en place pour empêcher toute usurpation, abus ou émission non autorisée de certificats.</p>
+
+    <h3>SPF</h3>
+    <pre>v=spf1 -all</pre>
+
+    <h3>DMARC</h3>
+    <pre>v=DMARC1; p=reject; sp=reject; rua=mailto:security@lemieuxsamson.com; fo=1</pre>
+
+    <h3>DKIM</h3>
+    <pre>; DKIM not used for vosti.ca — domain inactive, no email services configured</pre>
+
+    <h3>MTA-STS</h3>
+    <p>Politique accessible à : <a href="https://email-security.vosti.ca/.well-known/mta-sts.txt">/.well-known/mta-sts.txt</a></p>
+    <pre>_mta-sts.vosti.ca IN TXT "v=STSv1; id=20250821T1456Z"</pre>
+
+    <h3>MX</h3>
+    <pre>MX 0 localhost.invalid.</pre>
+
+    <h3>CAA</h3>
+    <pre>
+CAA 0 issue "letsencrypt.org"
+CAA 0 issuewild ";"
+    </pre>
+
+    <h3>Notes complémentaires</h3>
+    <p class="note">DNSSEC non activé — domaine inactif, aucune signature de zone requise.</p>
+    <p class="note">Site hébergé via GitHub Pages pour servir la politique MTA-STS et documenter la configuration.</p>
+  </div>
+
+  <div class="section">
+    <h2>📬 Contact</h2>
+    <p>Pour toute question liée à la sécurité ou pour signaler un abus :</p>
+    <p><strong>Email :</strong> <a href="mailto:security@lemieuxsamson.com">security@lemieuxsamson.com</a></p>
+  </div>
+
+  <div class="section">
+    <h2>🇬🇧 Domain Security Overview</h2>
+    <p>The domain <code>vosti.ca</code> is currently <strong>inactive</strong>. No email or web services are in use. However, all relevant DNS security protocols have been configured to prevent spoofing, abuse, or unauthorized certificate issuance.</p>
+
+    <h3>DNS Summary</h3>
+    <ul>
+      <li><strong>SPF:</strong> <code>v=spf1 -all</code></li>
+      <li><strong>DMARC:</strong> <code>p=reject; sp=reject; rua=mailto:security@lemieuxsamson.com</code></li>
+      <li><strong>DKIM:</strong> Not used</li>
+      <li><strong>MTA-STS:</strong> Enforced via GitHub Pages</li>
+      <li><strong>MX:</strong> <code>localhost.invalid</code></li>
+      <li><strong>CAA:</strong> Only Let's Encrypt authorized; wildcard issuance disallowed</li>
+      <li><strong>DNSSEC:</strong> Not enabled</li>
+    </ul>
+
+    <p class="note">This configuration is optimized for a dormant domain with strong anti-spoofing and anti-abuse protections.</p>
+  </div>
+
+</body>
+</html>
